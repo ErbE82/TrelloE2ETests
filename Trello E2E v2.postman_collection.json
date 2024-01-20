@@ -1,0 +1,399 @@
+{
+	"info": {
+		"_postman_id": "015868d2-4827-4e89-ad2e-9f290ef2e5ca",
+		"name": "Trello E2E v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21300247",
+		"_collection_link": "https://solar-crescent-76211.postman.co/workspace/Team-Workspace~6bbf410a-3304-4327-87e3-5157873a825b/collection/21300247-015868d2-4827-4e89-ad2e-9f290ef2e5ca?action=share&source=collection_link&creator=21300247"
+	},
+	"item": [
+		{
+			"name": "Create a board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"const boardName = pm.collectionVariables.get('cBoardName');\r",
+							"\r",
+							"pm.test(\"Should return correct board name: \" + boardName, function () {\r",
+							"    pm.expect(json.name).to.eql(boardName);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set('boardID', json.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/boards/?name={{cBoardName}}&key={{key}}&token={{token}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{cBoardName}}"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create first list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"const listName = pm.collectionVariables.get('cFirstList');\r",
+							"\r",
+							"pm.test(\"Should return correct list name: \" + listName, function () {\r",
+							"    pm.expect(json.name).to.eql(listName);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set('cFirstListID' ,json.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/boards/{{boardID}}/lists?name={{cFirstList}}&key={{key}}&token={{token}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"boards",
+						"{{boardID}}",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{cFirstList}}"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create second list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"const listName = pm.collectionVariables.get('cSecondList');\r",
+							"\r",
+							"pm.test(\"Should return correct list name: \" + listName, function () {\r",
+							"    pm.expect(json.name).to.eql(listName);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set('cSecondListID' ,json.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/boards/{{boardID}}/lists?name={{cSecondList}}&key={{key}}&token={{token}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"boards",
+						"{{boardID}}",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{cSecondList}}"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new Card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"const cardName = pm.collectionVariables.get('cCardName');\r",
+							"\r",
+							"pm.test(\"Should return correct card name: \" + cardName, function () {\r",
+							"    pm.expect(json.name).to.eql(cardName);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set('cCardID', json.id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/cards?idList={{cFirstListID}}&key={{key}}&token={{token}}&name={{cCardName}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"cards"
+					],
+					"query": [
+						{
+							"key": "idList",
+							"value": "{{cFirstListID}}"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "name",
+							"value": "{{cCardName}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move card to another list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"const secondListID = pm.collectionVariables.get('cSecondListID');\r",
+							"\r",
+							"pm.test(\"Should return correct card ID: \" + secondListID, function () {\r",
+							"    pm.expect(json.idList).to.eql(secondListID);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/cards/:id?key={{key}}&token={{token}}&idList={{cSecondListID}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"cards",
+						":id"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "idList",
+							"value": "{{cSecondListID}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{cCardID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/boards/{{boardID}}?key={{key}}&token={{token}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"boards",
+						"{{boardID}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "cBoardName",
+			"value": "Testowy board E2E",
+			"type": "string"
+		},
+		{
+			"key": "cFirstList",
+			"value": "zadania do zrobienia",
+			"type": "string"
+		},
+		{
+			"key": "cSecondList",
+			"value": "zadania zrobione",
+			"type": "string"
+		},
+		{
+			"key": "boardID",
+			"value": ""
+		},
+		{
+			"key": "cSecondListID",
+			"value": ""
+		},
+		{
+			"key": "cFirstListID",
+			"value": ""
+		},
+		{
+			"key": "cCardName",
+			"value": "Test Card Name",
+			"type": "string"
+		},
+		{
+			"key": "cCardID",
+			"value": ""
+		}
+	]
+}
